@@ -12,24 +12,28 @@
     </header>
     <div id="theme-selector">
         <label for="theme">Select theme</label>
-        <select id="theme" name="theme"></select>
+        <select id="theme" name="theme"><option value="color"> color</option></select>
     </div>
 
     <section id="piano">
         <h2>Piano</h2>
+        <!-- keys -->
+        <div id="b"></div>
     </section>
     <section id="key-press-display">
         <h2>Keys-Pressed</h2>
-        <div id="keys-Pressed"></div>
+        <div id="keys-Pressed"> <p id="key1"> key1</p>></div>
     </section>
 
     <section id="controls">
         <div id="record-section">
             <button id="record-button">Record Music</button>
+
         </div>
         <div id="saved-music">
             <h3>Saved Music</h3>
-            <ul id="music-list"></ul>
+
+            <select id="saved" name="saved"> <option value="tune"> tune</option></select>
         </div>
 
     </section>
