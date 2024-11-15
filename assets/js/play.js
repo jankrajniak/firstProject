@@ -21,7 +21,7 @@ function createNote(sound, description, time) {
     let noteObject = {
         note: sound,
         name: description,
-        lenth: time
+        length: time
     }
 
     return noteObject;
@@ -126,7 +126,41 @@ Eb.addEventListener('click', function() {
 });
 
 
+// FUNTION TO PULL SAVED SONGS FROM LOCAL STORAGE AND HAVE IT PLAY
+const selectSong = document.querySelector('#saved');
 
+function playSong(songId) {
+    const savedSongs = JSON.parse(localStorage.getItem('songs')) || [];
+    const song = savedSongs.find(song => song.id === songId);
 
+    if(song) {
+        let currentTime = 0;
+        song.notes.forEach(note => {
+            setTimeout(() => {
+                const sound = new Audio(`./assets/sounds/${note.note}.wav`);
+                sound.play();
+                createHTML(note);
+            }, currentTime);
 
+            currentTime += note.length;
+        });
+    }
+}
 
+selectSong.addEventListener('change', function () {
+    const selectedSongId = this.value;
+    playSong(selectedSongId);
+});
+
+// FUNCTION TO PUT THE SAVED SONGS IN THE DROP DOWN
+ function displaySavedSongs() {
+    const savedSongs = JSON.parse(localStorage.getItem('songs')) || [];
+    
+
+    savedSongs.forEach((song, index) => {
+        const option = document.createElement('option');
+        option.value = song.id;
+        option.textContent = `Song ${index + 1}`;
+        selectSong.appendChild(option);
+    });
+ }
