@@ -19,7 +19,7 @@ header {
 }
 
 #theme-selector, #controls, #key-press-display {
-    margin-top: 10px;
+    margin-top: 50px;
 }
 
 #piano {
@@ -58,7 +58,7 @@ header {
   position: relative;
 }
 
-/* Style for sharps/flats (black keys) */
+/* Style for sharps (black keys) */
 .piano-key.black {
   width: 30px;
   height: 100px;
