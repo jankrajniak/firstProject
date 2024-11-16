@@ -18,18 +18,20 @@ recordButton.addEventListener('click', function() {
         recording = false;
         recordButton.textContent = 'Record Music';
         localStorage.removeItem('tempStorage');
+
+        displaySavedSongs();
     }
 
 })
 
 // Generic function to create a note object
-function createNote(sound, description, time) {
+function createNote(sound, description, length = 1) {
     let noteObject = {
         note: sound,
         name: description,
-        length: time
-    }
-
+        length: length
+    };
+console.log("Created Note Object:", noteObject);
     return noteObject;
 }
 
@@ -51,6 +53,7 @@ function retrieveFromStorage() {
 // Function to save an array of note objects to temporary storage (used for building HTML and holding played music when recording)
 function storeNote(noteObject) {
     const tempStorage = retrieveFromStorage();
+    console.log("storing note object:", noteObject);
 
     if (recording) {
         tempStorage.push(noteObject);
@@ -67,7 +70,9 @@ function storeNote(noteObject) {
 // Function to save an array of note objects from tempStorage into named storage
 function saveMusic(recordingName) {
     const tempStorage = retrieveFromStorage();
-    localStorage.setItem(recordingName,tempStorage);
+    console.log("Saving music:", tempStorage);
+    localStorage.setItem(recordingName, JSON.stringify(tempStorage));
+    displaySavedSongs();
 }
 
 
@@ -98,6 +103,7 @@ function createHTML(noteObject) {
 
 // Logic to create a specific note object on key press or mouse click (event listeners for each keypress)
 Bb.addEventListener('click', function() {  
+    console.log("Bb key clicked");
     const note = new Audio('./assets/sounds/Bb.wav');
     note.play();
 
@@ -139,36 +145,74 @@ Eb.addEventListener('click', function() {
 const selectSong = document.querySelector('#saved');
 
 function playSong(songId) {
-    const savedSongs = JSON.parse(localStorage.getItem('songs')) || [];
-    const song = savedSongs.find(song => song.id === songId);
 
-    if(song) {
+    const song = JSON.parse(localStorage.getItem(songId));
+
+    console.log("Retrieved Song from localStorage:", song);
+
+
+    if(song && Array.isArray(song)) {
         let currentTime = 0;
-        song.notes.forEach(note => {
+
+        song.forEach(note => {
+            console.log("checking note:", note);
+            if (note.note && note.name && note.length !== undefined) {
+                let fileName = note.note.replace(/[-]/g, '');
+                const filePath = `./assets/sounds/${fileName}.wav`;
+                console.log("Attempting to play file:", filePath);
+// Check if file exists and create the Audio object
+const sound = new Audio(filePath);
+// sound.play();
+
+sound.addEventListener('error', () => {
+    console.error("Audio file not found or format not supported:", filePath);
+});
+        
             setTimeout(() => {
-                const sound = new Audio(`./assets/sounds/${note.note}.wav`);
-                sound.play();
+                sound.play().then(() => {
+                    console.log(`${note.note} is playing`);
+                 }).catch(err => {
+                    console.error("Audio playback error:", err);
+                });
+                
                 createHTML(note);
             }, currentTime);
 
-            currentTime += note.length;
+            currentTime += note.length *1000;
+        } else {
+            console.error("INvalid note object:", note);
+        }
         });
+    } else {
+        console. error("Invalid song data:", song);
     }
 }
 
 selectSong.addEventListener('change', function () {
     const selectedSongId = this.value;
+    console.log("Selected songId:", selectedSongId);
     playSong(selectedSongId);
-});
+   });
 
 // FUNCTION TO PUT THE SAVED SONGS IN THE DROP DOWN
  function displaySavedSongs() {
-    const savedSongs = JSON.parse(localStorage.getItem('songs')) || [];
+    const defaultOption = document.createElement('option');
+   selectSong.innerHTML = '';
+   defaultOption.value = '';
+   defaultOption.textContent = 'Select a Song';
+   defaultOption.disabled = true;
+   defaultOption.selected = true;
+   selectSong.appendChild(defaultOption);
+   
+   for (let i = 0; i <localStorage.length; i++) {
+    const key = localStorage.key(i);
 
-    savedSongs.forEach((song, index) => {
+    if (key !== 'tempStorage' && key !== 'songs') {
         const option = document.createElement('option');
-        option.value = song.id;
-        option.textContent = `Song ${index + 1}`;
+        option.value = key;
+        option.textContent = key;
         selectSong.appendChild(option);
-    });
+    }
+   }
  }
+document.addEventListener('DOMContentLoaded', displaySavedSongs);
