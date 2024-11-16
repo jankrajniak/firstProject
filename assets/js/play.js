@@ -36,17 +36,20 @@ const keysPressed = document.querySelector('#keys-Pressed')
             localStorage.removeItem('tempStorage');
             //clear the displayed noteObject(s), so that the user is clear they are starting fresh
             removeHTML();
+            displaySavedSongs();
         }
 
     })
 
 // Generic function to create a note object
-function createNote(sound, description, location,) {
+function createNote(sound, description, location, length = 1) {
     let noteObject = {
         note: sound,
         name: description,
         url: location,
-    }
+        length: length
+    };
+console.log("Created Note Object:", noteObject);
     return noteObject;
 }
 
@@ -68,7 +71,9 @@ function retrieveFromStorage() {
 function storeNote(noteObject) {
     //retrieve noteObjects in local storage
     const tempStorage = retrieveFromStorage();
-    //If recording, append the noteObject to temporary storage
+    console.log("storing note object:", noteObject);
+    //If recording, append the noteObject to temporary storage    console.log("storing note object:", noteObject);
+
     if (recording) {
         tempStorage.push(noteObject);
     //If not recording, replace the ONLY noteObject in temporary storage
@@ -86,7 +91,9 @@ function storeNote(noteObject) {
 // Function to save an array of note objects from tempStorage into named storage
 function saveMusic(recordingName) {
     const tempStorage = retrieveFromStorage();
-    localStorage.setItem(recordingName,tempStorage);
+    console.log("Saving music:", tempStorage);
+    localStorage.setItem(recordingName, JSON.stringify(tempStorage));
+    displaySavedSongs();
 }
 
 
@@ -100,7 +107,22 @@ function removeHTML () {
 }
 
 // Function to create HTML elements to represent the notes held in localStorage under tempStorage
-function createHTML() {
+function createHTML(noteObject = null) {
+    if (noteObject) {
+        const note = document.createElement('div');
+        note.setAttribute('class', 'noteObject');
+
+        const key = document.createElement('h2');
+        key.textContent = noteObject.note;
+
+        const name = document.createElement('p');
+        name.textContent = noteObject.name;
+
+        note.appendChild(key);
+        note.appendChild(name);
+
+        keysPressed.appendChild(note);
+    } else {
     //Clear HTML of noteOBject(s)
     removeHTML();
 
@@ -120,14 +142,14 @@ function createHTML() {
             note.appendChild(name);
         
             keysPressed.appendChild(note);
-        })
-    
+        });
+    }   
 }
 
 // Event listeners for each key press. These listeners repeat for each notes, comments will only be included
 // on the first one
 Bb.addEventListener('click', function() {  
-
+    console.log("Bb key clicked");
     filename = './assets/sounds/Bb.wav'
     //create an audio object with the sound appropriate for the key
     const note = new Audio(filename);
@@ -288,3 +310,80 @@ G.addEventListener('click', function() {
 
 });
 
+
+// FUNTION TO PULL SAVED SONGS FROM LOCAL STORAGE AND HAVE IT PLAY
+const selectSong = document.querySelector('#saved');
+
+function playSong(songId) {
+
+    const song = JSON.parse(localStorage.getItem(songId));
+
+    console.log("Retrieved Song from localStorage:", song);
+
+
+    if(song && Array.isArray(song)) {
+        removeHTML();
+        let currentTime = 0;
+
+        song.forEach(note => {
+            console.log("checking note:", note);
+            if (note.note && note.name && note.length !== undefined) {
+                let fileName = note.note.replace(/[-]/g, '');
+                const filePath = `./assets/sounds/${fileName}.wav`;
+                console.log("Attempting to play file:", filePath);
+
+                 const sound = new Audio(filePath);
+
+
+     sound.addEventListener('error', () => {
+         console.error("Audio file not found or format not supported:", filePath);
+});
+        
+            setTimeout(() => {
+                sound.play().then(() => {
+                    console.log(`${note.note} is playing`);
+                 }).catch(err => {
+                    console.error("Audio playback error:", err);
+                });
+                
+                createHTML(note);
+            }, currentTime);
+
+            currentTime += note.length *1000;
+        } else {
+            console.error("INvalid note object:", note);
+        }
+        });
+    } else {
+        console. error("Invalid song data:", song);
+    }
+}
+
+selectSong.addEventListener('change', function () {
+    const selectedSongId = this.value;
+    console.log("Selected songId:", selectedSongId);
+    playSong(selectedSongId);
+   });
+
+// FUNCTION TO PUT THE SAVED SONGS IN THE DROP DOWN
+ function displaySavedSongs() {
+    const defaultOption = document.createElement('option');
+   selectSong.innerHTML = '';
+   defaultOption.value = '';
+   defaultOption.textContent = 'Select a Song';
+   defaultOption.disabled = true;
+   defaultOption.selected = true;
+   selectSong.appendChild(defaultOption);
+   
+   for (let i = 0; i <localStorage.length; i++) {
+    const key = localStorage.key(i);
+
+    if (key !== 'tempStorage' && key !== 'songs') {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = key;
+        selectSong.appendChild(option);
+    }
+   }
+ }
+document.addEventListener('DOMContentLoaded', displaySavedSongs);
