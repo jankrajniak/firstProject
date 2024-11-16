@@ -41,7 +41,8 @@ const keysPressed = document.querySelector('#keys-Pressed')
 
     })
 
-// Generic function to create a note object
+// Generic function to create a note object (using a new object vs. leveraging allNotes to allow for inclusion
+// of other info such as length (and more in the future)
 function createNote(sound, description, location, length = 1) {
     let noteObject = {
         note: sound,
@@ -146,167 +147,90 @@ function createHTML(noteObject = null) {
     }   
 }
 
-// Event listeners for each key press. These listeners repeat for each notes, comments will only be included
-// on the first one
-Bb.addEventListener('click', function() {  
-    console.log("Bb key clicked");
-    filename = './assets/sounds/Bb.wav'
+//Function to select the object from repository of notes (allNotes in our case) that matches the ID of the clicked key
+function identifyNote(id, noteRepository) {
+    return noteRepository.find(obj => obj.id === id);
+};
+
+//Function to be executed on clicking a piano key
+function executePianoClick(clickedKey) {
+    //Use the identifyNote function to obtain the relevant object
+    noteData = identifyNote("#"+clickedKey, allNotes);
+
     //create an audio object with the sound appropriate for the key
-    const note = new Audio(filename);
+    const note = new Audio(noteData.url);
     //play the audio object
     note.play();
 
     //create a noteObject for the paino key pressed
-    playedNote = createNote(this.id,'Note B in flat',filename);
+    playedNote = createNote(noteData.id,noteData.text, noteData.url);
 
     //store the noteObjected in temporary storage (appropriate to recording or not recording state)
     storeNote(playedNote);
 
     //create the HTML elements to display
     createHTML();
+}
+
+// Event listeners for each key press. 
+
+Bb.addEventListener('click', function() { 
+    executePianoClick(this.id);
 
 });
 
 Fsharp.addEventListener('click', function() {   
-    filename = './assets/sounds/Fsharp.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note F in sharp',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 Eb.addEventListener('click', function() {   
-    filename = './assets/sounds/Eb.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note E in flat',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 Csharp.addEventListener('click', function() {   
-    filename = './assets/sounds/Csharp.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note C in sharp',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 Gsharp.addEventListener('click', function() {   
-    filename = './assets/sounds/Gsharp.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note G in sharp',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 B.addEventListener('click', function() {   
-    filename = './assets/sounds/B.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note B',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 F.addEventListener('click', function() {   
-    filename = './assets/sounds/F.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note F',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 A.addEventListener('click', function() {   
-    filename = './assets/sounds/A.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note A',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 E.addEventListener('click', function() {   
-    filename = './assets/sounds/E.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note E',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 D.addEventListener('click', function() {   
-    filename = './assets/sounds/D.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note D',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 C.addEventListener('click', function() {   
-    filename = './assets/sounds/C.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note C',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 G.addEventListener('click', function() {   
-    filename = './assets/sounds/G.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note G',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
