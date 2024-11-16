@@ -251,10 +251,9 @@ function playSong(songId) {
 
         song.forEach(note => {
             console.log("checking note:", note);
-            if (note.note && note.name && note.length !== undefined) {
-                let fileName = note.note.replace(/[-]/g, '');
-                const filePath = `./assets/sounds/${fileName}.wav`;
-                console.log("Attempting to play file:", filePath);
+            if (note.note && note.url && note.name && note.length !== undefined) {
+                const filePath = note.url;
+                console.log("Attempting to play file:", note.url);
 
                  const sound = new Audio(filePath);
 
