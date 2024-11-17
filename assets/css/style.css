@@ -16,10 +16,12 @@ body {
 
 header {
     margin-bottom: 20px;
+    text-align: center;
 }
 
 #theme-selector, #controls, #key-press-display {
-    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 #piano {
@@ -56,6 +58,7 @@ header {
   color: #333;
   border: 1px solid #ccc;
   position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Style for sharps (black keys) */
@@ -66,27 +69,24 @@ header {
   color: #fff;
   position: absolute;
   z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  
 }
 
 #C-sharp { 
-    left: 70px;
-    position: absolute;
+    left: calc((100% / 7) * 3.29 - ((100% / 7 * 0.6) / 2));
  }
   #D-sharp { 
-    left: 130px;
-    position: absolute;
+    left: calc((100% / 7) * 3.47 - ((100% / 7 * 0.6) / 2));
  }
   #F-sharp { 
-    left: 240px;
-    position: absolute;
+    left: calc((100% / 7) * 3.83 - ((100% / 7 * 0.6) / 2));
 }
   #G-sharp { 
-    left: 300px;
-    position: absolute;
+    left: calc((100% / 7) * 4.01 - ((100% / 7 * 0.6) / 2));
  }
   #A-sharp { 
-    left: 360px;
-    position: absolute;
+    left: calc((100% / 7) * 4.196 - ((100% / 7 * 0.6) / 2));
  }
 
 #piano, #key-press-display, #controls {
@@ -95,9 +95,48 @@ header {
     background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background for sections */
 }
 
+.piano-key:hover {
+    background-color: rgb(18, 126, 197);
+}
+
 #record-section, #saved-music {
     margin-top: 15px;
+    
 }
+
+#dropdownMenuButton {
+    background-color: black;
+    color: white;
+    border: 2px solid gold; 
+    font-family: 'Arial', sans-serif;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+#dropdownMenuButton:hover {
+    background-color: gold;
+    color: black; 
+    border: 2px solid black; 
+}
+
+
+.dropdown-menu {
+    background-color: black;
+    border: 1px solid gold; 
+    padding: 10px 0;
+}
+
+.dropdown-item {
+    color: white; 
+    padding: 10px 20px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: gold;
+    color: black; 
+}
+
 
 button {
     padding: 10px 15px;
@@ -118,4 +157,5 @@ footer {
     margin-top: 20px;
     font-size: 0.9em;
     color: #888;
+    text-align: center;
 }
