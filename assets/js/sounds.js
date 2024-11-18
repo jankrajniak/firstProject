@@ -1,4 +1,4 @@
-//Building basic resources and checkign to see if the sounds will play
+//Building basic resources and checking to see if the sounds will play
 
 // alert('LEARN HOW TO PLAY PIANO');
 // alert('CLICK ON EACH KEY TO HEAR THE NOTE');

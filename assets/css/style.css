@@ -18,6 +18,11 @@ body {
     color: #fff;
     position: relative;
     overflow: hidden;
+    font-family: "Dancing Script", cursive;
+}
+
+h1, h2, h3 {
+    font-family: "Dancing Script", cursive;
 }
 
 header {
@@ -145,6 +150,7 @@ header {
     font-family: 'Arial', sans-serif;
     padding: 10px 20px;
     transition: all 0.3s ease;
+    font-family: "Dancing Script", cursive;
 }
 #dropdownMenuButton:hover {
     background-color: gold;
@@ -186,9 +192,24 @@ button:hover {
     background-color: #666;
 }
 
+select {
+    padding: 10px 15px;
+    font-size: 1em;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+select:hover {
+background-color: #666;
+}
+
 footer {
-    margin-top: 20px;
+    margin-top: 270px;
     font-size: 0.9em;
-    color: #888;
+    color: #ffffff;
     text-align: center;
 }
