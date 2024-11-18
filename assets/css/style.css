@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     background-image: url('https://thumbs.dreamstime.com/b/captivating-image-grand-piano-gleaming-under-spotlight-generative-ai-captivating-image-grand-piano-335269453.jpg');
     background-size: cover; /* Cover the entire page */
@@ -29,6 +35,38 @@ header {
     justify-content: center;
     position: relative;
     gap: 0;
+}
+
+.normal-theme .piano-key.white {
+    background-color: white;
+    color: black;
+}
+
+.green-theme .piano-key.white {
+    background-color: green;
+    color: black;
+}
+
+.red-theme .piano-key.white {
+    background-color: red;
+    color: black;
+}
+
+.blue-theme .piano-key.white {
+    background-color: blue;
+    color: black;
+}
+
+.green-theme .piano-key.white:hover {
+    background-color: lightgreen;
+}
+
+.red-theme .piano-key.white:hover {
+    background-color: lightcoral;
+}
+
+.blue-theme .piano-key.white:hover {
+    background-color: lightblue;
 }
 
 .piano-key {
@@ -95,10 +133,6 @@ header {
     background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background for sections */
 }
 
-.piano-key:hover {
-    background-color: rgb(18, 126, 197);
-}
-
 #record-section, #saved-music {
     margin-top: 15px;
     
@@ -136,7 +170,6 @@ header {
     background-color: gold;
     color: black; 
 }
-
 
 button {
     padding: 10px 15px;
