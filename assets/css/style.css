@@ -133,7 +133,7 @@ header {
  }
 
 #piano, #key-press-display, #controls {
-    padding: 20px;
+    padding: 50px;
     border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background for sections */
 }
@@ -146,8 +146,8 @@ header {
 #dropdownMenuButton {
     background-color: black;
     color: white;
-    border: 2px solid gold; 
-    font-family: 'Arial', sans-serif;
+    border: 2px solid gold;
+    border-radius: 15px;
     padding: 10px 20px;
     transition: all 0.3s ease;
     font-family: "Dancing Script", cursive;
@@ -183,7 +183,7 @@ button {
     color: #f0f0f0;
     background-color: #444;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -198,7 +198,7 @@ select {
     background-color: #444;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -208,7 +208,7 @@ background-color: #666;
 }
 
 footer {
-    margin-top: 270px;
+    margin-top: 90px;
     font-size: 0.9em;
     color: #ffffff;
     text-align: center;
