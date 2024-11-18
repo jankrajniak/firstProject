@@ -18,71 +18,75 @@ const C = document.querySelector('#C');
 const G = document.querySelector('#G');
 
 
+const allNotes = [{
+    id:'#Bb',
+    text: 'Note B in flat',
+    url: './assets/sounds/Bb.wav'
+},
 
-// Bb.addEventListener('click', function() {
-//     const note = new Audio('./assets/sounds/Bb.wav');
-//     console.log(Bb.id);
-//     console.log(Bb.id+'.wav');
-//     note.play();
-// });
+{
+    id:'#F-sharp',
+    text:'Note F in sharp',
+    url: './assets/sounds/Fsharp.wav' 
+},
 
-// Fsharp.addEventListener('click', function() {
-//     const note = new Audio('./assets/sounds/Fsharp.wav');
-//     note.play();
-// });
+{
+    id:'#Eb',
+    text: 'Note E in flat',
+    url: './assets/sounds/Eb.wav'
+},
 
-Eb.addEventListener('click', function() {
-    const note = new Audio('./assets/sounds/Eb.wav');
-    note.play();
-});
+{
+    id:'#C-sharp',
+    text: 'Note C in sharp',
+    url: './assets/sounds/Csharp.wav'
+},
 
-Csharp.addEventListener('click', function() {
-    const note = new Audio('./assets/sounds/Csharp.wav');
-    note.play();
-});
+{
+    id:'#G-sharp',
+    text: 'Note G in sharp',
+    url: './assets/sounds/Gsharp.wav'
+},
 
-Csharp.addEventListener('click', function() {
-    const note = new Audio('./assets/sounds/Csharp.wav');
-    note.play();
-});
+{
+    id:'#B',
+    text:'Note B',
+    url:'./assets/sounds/B.wav' 
+},
 
-Gsharp.addEventListener('click', function() {
-    const note = new Audio('./assets/sounds/Gsharp.wav');
-    note.play();
-});
+{
+    id:'#F',
+    text:'Note F',
+    url:'./assets/sounds/F.wav' 
+},
 
-B.addEventListener('click', function() {
-    const note = new Audio('./assets/sounds/B.wav');
-    note.play();
-});
+{
+    id:'#A',
+    text:'Note A',
+    url:'./assets/sounds/A.wav'
+},
 
-F.addEventListener('click', function() {
-    const note = new Audio('./assets/sounds/F.wav');
-    note.play();
-});
+{
+    id:'#E',
+    text:'Note E',
+    url:'./assets/sounds/E.wav'
+},
 
-A.addEventListener('click', function() {
-    const note = new Audio('./assets/sounds/A.wav');
-    note.play();
-});
+{
+    id:'#D',
+    text:'Note D',
+    url:'./assets/sounds/D.wav'
+},
 
-E.addEventListener('click', function() {
-    const note = new Audio('./assets/sounds/E.wav');
-    note.play();
-});
+{
+    id:'#C',
+    text:'Note C',
+    url:'./assets/sounds/C.wav'
+},
 
-D.addEventListener('click', function() {
-    const note = new Audio('./assets/sounds/D.wav');
-    note.play();
-});
-
-C.addEventListener('click', function() {
-    const note = new Audio('./assets/sounds/C.wav');
-    note.play();
-});
-
-G.addEventListener('click', function() {
-    const note = new Audio('./assets/sounds/G.wav');
-    note.play();
-});
-
+{
+    id:'#G',
+    text:'Note G',
+    url:'./assets/sounds/G.wav'
+}
+]
