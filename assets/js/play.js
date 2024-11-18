@@ -5,6 +5,7 @@ const keysPressed = document.querySelector('#keys-Pressed')
 
     //Intialize variable which tracks the state
     let recording = false;
+    let startTime = null;
 
     //Select the html element (button) which the user clicks to start recording music
     recordButton = document.querySelector('#record-button');
@@ -34,16 +35,18 @@ const keysPressed = document.querySelector('#keys-Pressed')
             recordButton.textContent = 'Record Music';
             //clear temporary storage so that the display for the user is cleared
             localStorage.removeItem('tempStorage');
-            //clear the displayed noteObject(s), so that the user is clear they are starting fresh
+            //clear the displayed noteObject(s), so that the user is clear they are starting fresh and reset startTime to null
+            //for the next recording
             removeHTML();
             displaySavedSongs();
+            startTime = null;
         }
 
     })
 
 // Generic function to create a note object (using a new object vs. leveraging allNotes to allow for inclusion
 // of other info such as length (and more in the future)
-function createNote(sound, description, location, length = 1) {
+function createNote(sound, description, location, length = 1000) {
     let noteObject = {
         note: sound,
         name: description,
@@ -147,6 +150,14 @@ function createHTML(noteObject = null) {
     }   
 }
 
+//Function used to update the play time of the last played note object 
+function updatePlayTime(playTime) {
+    const tempStorage = retrieveFromStorage();
+    tempStorage.at(-1).length = playTime;
+    localStorage.setItem('tempStorage', JSON.stringify(tempStorage));
+}
+  
+
 //Function to select the object from repository of notes (allNotes in our case) that matches the ID of the clicked key
 function identifyNote(id, noteRepository) {
     return noteRepository.find(obj => obj.id === id);
@@ -154,6 +165,21 @@ function identifyNote(id, noteRepository) {
 
 //Function to be executed on clicking a piano key
 function executePianoClick(clickedKey) {
+    //Check if this is the first click since the recording has started and we are recording
+    if (startTime === null && recording) {
+        //If it is, we will not be updating the time of the previous note object, but we will start recording
+        //time
+        startTime = Date.now();
+
+    }   else if (recording) {
+        // If it is not and we have been recording, we also have to update the previous note with the appropriate time
+        const oldStartTime = startTime;
+        startTime = Date.now();
+        const playTime = startTime - oldStartTime;
+        updatePlayTime(playTime);
+    }
+
+    //We identify, play and add the current note to localStorage 
     //Use the identifyNote function to obtain the relevant object
     noteData = identifyNote("#"+clickedKey, allNotes);
 
@@ -170,6 +196,7 @@ function executePianoClick(clickedKey) {
 
     //create the HTML elements to display
     createHTML();
+
 }
 
 // Event listeners for each key press. 
@@ -272,7 +299,7 @@ function playSong(songId) {
                 createHTML(note);
             }, currentTime);
 
-            currentTime += note.length *1000;
+            currentTime += note.length;
         } else {
             console.error("INvalid note object:", note);
         }
