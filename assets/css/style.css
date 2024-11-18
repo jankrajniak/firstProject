@@ -1,0 +1,194 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('https://thumbs.dreamstime.com/b/captivating-image-grand-piano-gleaming-under-spotlight-generative-ai-captivating-image-grand-piano-335269453.jpg');
+    background-size: cover; /* Cover the entire page */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Avoid repeating the image */
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+
+header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#theme-selector, #controls, #key-press-display {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#piano {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    gap: 0;
+}
+
+.normal-theme .piano-key.white {
+    background-color: white;
+    color: black;
+}
+
+.green-theme .piano-key.white {
+    background-color: green;
+    color: black;
+}
+
+.red-theme .piano-key.white {
+    background-color: red;
+    color: black;
+}
+
+.blue-theme .piano-key.white {
+    background-color: blue;
+    color: black;
+}
+
+.green-theme .piano-key.white:hover {
+    background-color: lightgreen;
+}
+
+.red-theme .piano-key.white:hover {
+    background-color: lightcoral;
+}
+
+.blue-theme .piano-key.white:hover {
+    background-color: lightblue;
+}
+
+.piano-key {
+    width: 50px; /* Set width for each key */
+    height: 150px; /* Set height for each key */
+    font-size: 1em;
+    border: 1px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: transform 0.1s;
+    padding-top: 100px;
+}
+
+.piano-key:active {
+    transform: scale(0.95); /* Add a press effect */
+}
+
+/* Style for regular (white) keys */
+.piano-key.white {
+  width: 50px;
+  height: 150px;
+  background-color: #f4f4f4;
+  color: #333;
+  border: 1px solid #ccc;
+  position: relative;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for sharps (black keys) */
+.piano-key.black {
+  width: 30px;
+  height: 100px;
+  background-color: #333;
+  color: #fff;
+  position: absolute;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  
+}
+
+#C-sharp { 
+    left: calc((100% / 7) * 3.29 - ((100% / 7 * 0.6) / 2));
+ }
+  #D-sharp { 
+    left: calc((100% / 7) * 3.47 - ((100% / 7 * 0.6) / 2));
+ }
+  #F-sharp { 
+    left: calc((100% / 7) * 3.83 - ((100% / 7 * 0.6) / 2));
+}
+  #G-sharp { 
+    left: calc((100% / 7) * 4.01 - ((100% / 7 * 0.6) / 2));
+ }
+  #A-sharp { 
+    left: calc((100% / 7) * 4.196 - ((100% / 7 * 0.6) / 2));
+ }
+
+#piano, #key-press-display, #controls {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background for sections */
+}
+
+#record-section, #saved-music {
+    margin-top: 15px;
+    
+}
+
+#dropdownMenuButton {
+    background-color: black;
+    color: white;
+    border: 2px solid gold; 
+    font-family: 'Arial', sans-serif;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+}
+#dropdownMenuButton:hover {
+    background-color: gold;
+    color: black; 
+    border: 2px solid black; 
+}
+
+
+.dropdown-menu {
+    background-color: black;
+    border: 1px solid gold; 
+    padding: 10px 0;
+}
+
+.dropdown-item {
+    color: white; 
+    padding: 10px 20px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.dropdown-item:hover {
+    background-color: gold;
+    color: black; 
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 1em;
+    color: #f0f0f0;
+    background-color: #444;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #666;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #888;
+    text-align: center;
+}
