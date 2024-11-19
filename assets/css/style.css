@@ -18,6 +18,11 @@ body {
     color: #fff;
     position: relative;
     overflow: hidden;
+    font-family: "Dancing Script", cursive;
+}
+
+h1, h2, h3 {
+    font-family: "Dancing Script", cursive;
 }
 
 header {
@@ -135,8 +140,11 @@ header {
     left: calc((100% / 7) * 5.75 - ((100% / 7 * 0.6) / 2));
  }
 
+
 #piano, #key-press-display, #controls, #piano-div {
     padding: 20px;
+
+
     border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background for sections */
 }
@@ -179,10 +187,11 @@ header {
 #dropdownMenuButton {
     background-color: black;
     color: white;
-    border: 2px solid gold; 
-    font-family: 'Arial', sans-serif;
+    border: 2px solid gold;
+    border-radius: 15px;
     padding: 10px 20px;
     transition: all 0.3s ease;
+    font-family: "Dancing Script", cursive;
 }
 #dropdownMenuButton:hover {
     background-color: gold;
@@ -215,7 +224,7 @@ button {
     color: #f0f0f0;
     background-color: #444;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -224,9 +233,24 @@ button:hover {
     background-color: #666;
 }
 
+select {
+    padding: 10px 15px;
+    font-size: 1em;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+select:hover {
+background-color: #666;
+}
+
 footer {
-    margin-top: 20px;
+    margin-top: 90px;
     font-size: 0.9em;
-    color: #888;
+    color: #ffffff;
     text-align: center;
 }
