@@ -3,6 +3,7 @@ const greenTheme = document.getElementById('greenTheme');
 const redTheme = document.getElementById('redTheme');
 const blueTheme = document.getElementById('blueTheme');
 const normalTheme = document.getElementById('normalTheme');
+const modalTitle = document.querySelector('.modal-title')
 
 const piano = document.getElementById(`piano`);
 
@@ -28,3 +29,5 @@ blueTheme.addEventListener('click', function(){
 normalTheme.addEventListener('click', function(){
     changeTheme('', 'Select Theme');
 });
+
+// modalTitle.textContent('instructions')
