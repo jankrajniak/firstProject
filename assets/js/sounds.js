@@ -4,9 +4,9 @@
 // alert('CLICK ON EACH KEY TO HEAR THE NOTE');
 // alert('RECORD YOUR MUSIC AND PLAY IT BACK LATER');
 
-const Bb = document.querySelector('#Bb');
+const Dsharp = document.querySelector('#D-sharp');
 const Fsharp = document.querySelector('#F-sharp');
-const Eb = document.querySelector('#Eb');
+const Asharp = document.querySelector('#A-sharp');
 const Csharp = document.querySelector('#C-sharp');
 const Gsharp = document.querySelector('#G-sharp');
 const B = document.querySelector('#B');
@@ -19,8 +19,8 @@ const G = document.querySelector('#G');
 
 
 const allNotes = [{
-    id:'#Bb',
-    text: 'Note B in flat',
+    id:'#D-sharp',
+    text: 'Note D in sharp',
     url: './assets/sounds/Bb.wav'
 },
 
@@ -31,8 +31,8 @@ const allNotes = [{
 },
 
 {
-    id:'#Eb',
-    text: 'Note E in flat',
+    id:'#A-sharp',
+    text: 'Note A in sharp',
     url: './assets/sounds/Eb.wav'
 },
 

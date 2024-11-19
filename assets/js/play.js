@@ -94,10 +94,12 @@ function storeNote(noteObject) {
 
 // Function to save an array of note objects from tempStorage into named storage
 function saveMusic(recordingName) {
-    const tempStorage = retrieveFromStorage();
-    console.log("Saving music:", tempStorage);
-    localStorage.setItem(recordingName, JSON.stringify(tempStorage));
-    displaySavedSongs();
+    if (recordingName) {
+        const tempStorage = retrieveFromStorage();
+        console.log("Saving music:", tempStorage);
+        localStorage.setItem(recordingName, JSON.stringify(tempStorage));
+        displaySavedSongs();
+    }
 }
 
 
@@ -201,7 +203,7 @@ function executePianoClick(clickedKey) {
 
 // Event listeners for each key press. 
 
-Bb.addEventListener('click', function() { 
+Dsharp.addEventListener('click', function() { 
     executePianoClick(this.id);
 
 });
@@ -211,7 +213,7 @@ Fsharp.addEventListener('click', function() {
 
 });
 
-Eb.addEventListener('click', function() {   
+Asharp.addEventListener('click', function() {   
     executePianoClick(this.id);
 
 });
