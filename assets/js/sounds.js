@@ -19,8 +19,8 @@ const G = document.querySelector('#G');
 
 
 const allNotes = [{
-    id:'#D-sharp',
-    text: 'Note D in sharp',
+    id:'#A-sharp',
+    text: 'Note A in sharp',
     url: './assets/sounds/Bb.wav'
 },
 
@@ -31,8 +31,8 @@ const allNotes = [{
 },
 
 {
-    id:'#A-sharp',
-    text: 'Note A in sharp',
+    id:'#D-sharp',
+    text: 'Note D in sharp',
     url: './assets/sounds/Eb.wav'
 },
 
