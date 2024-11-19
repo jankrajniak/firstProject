@@ -5,6 +5,7 @@ const keysPressed = document.querySelector('#keys-Pressed')
 
     //Intialize variable which tracks the state
     let recording = false;
+    let startTime = null;
 
     //Select the html element (button) which the user clicks to start recording music
     recordButton = document.querySelector('#record-button');
@@ -34,15 +35,18 @@ const keysPressed = document.querySelector('#keys-Pressed')
             recordButton.textContent = 'Record Music';
             //clear temporary storage so that the display for the user is cleared
             localStorage.removeItem('tempStorage');
-            //clear the displayed noteObject(s), so that the user is clear they are starting fresh
+            //clear the displayed noteObject(s), so that the user is clear they are starting fresh and reset startTime to null
+            //for the next recording
             removeHTML();
             displaySavedSongs();
+            startTime = null;
         }
 
     })
 
-// Generic function to create a note object
-function createNote(sound, description, location, length = 1) {
+// Generic function to create a note object (using a new object vs. leveraging allNotes to allow for inclusion
+// of other info such as length (and more in the future)
+function createNote(sound, description, location, length = 1000) {
     let noteObject = {
         note: sound,
         name: description,
@@ -146,18 +150,46 @@ function createHTML(noteObject = null) {
     }   
 }
 
-// Event listeners for each key press. These listeners repeat for each notes, comments will only be included
-// on the first one
-Bb.addEventListener('click', function() {  
-    console.log("Bb key clicked");
-    filename = './assets/sounds/Bb.wav'
+//Function used to update the play time of the last played note object 
+function updatePlayTime(playTime) {
+    const tempStorage = retrieveFromStorage();
+    tempStorage.at(-1).length = playTime;
+    localStorage.setItem('tempStorage', JSON.stringify(tempStorage));
+}
+  
+
+//Function to select the object from repository of notes (allNotes in our case) that matches the ID of the clicked key
+function identifyNote(id, noteRepository) {
+    return noteRepository.find(obj => obj.id === id);
+};
+
+//Function to be executed on clicking a piano key
+function executePianoClick(clickedKey) {
+    //Check if this is the first click since the recording has started and we are recording
+    if (startTime === null && recording) {
+        //If it is, we will not be updating the time of the previous note object, but we will start recording
+        //time
+        startTime = Date.now();
+
+    }   else if (recording) {
+        // If it is not and we have been recording, we also have to update the previous note with the appropriate time
+        const oldStartTime = startTime;
+        startTime = Date.now();
+        const playTime = startTime - oldStartTime;
+        updatePlayTime(playTime);
+    }
+
+    //We identify, play and add the current note to localStorage 
+    //Use the identifyNote function to obtain the relevant object
+    noteData = identifyNote("#"+clickedKey, allNotes);
+
     //create an audio object with the sound appropriate for the key
-    const note = new Audio(filename);
+    const note = new Audio(noteData.url);
     //play the audio object
     note.play();
 
     //create a noteObject for the paino key pressed
-    playedNote = createNote(this.id,'Note B in flat',filename);
+    playedNote = createNote(noteData.id,noteData.text, noteData.url);
 
     //store the noteObjected in temporary storage (appropriate to recording or not recording state)
     storeNote(playedNote);
@@ -165,148 +197,67 @@ Bb.addEventListener('click', function() {
     //create the HTML elements to display
     createHTML();
 
+}
+
+// Event listeners for each key press. 
+
+Bb.addEventListener('click', function() { 
+    executePianoClick(this.id);
+
 });
 
 Fsharp.addEventListener('click', function() {   
-    filename = './assets/sounds/Fsharp.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note F in sharp',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 Eb.addEventListener('click', function() {   
-    filename = './assets/sounds/Eb.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note E in flat',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 Csharp.addEventListener('click', function() {   
-    filename = './assets/sounds/Csharp.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note C in sharp',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 Gsharp.addEventListener('click', function() {   
-    filename = './assets/sounds/Gsharp.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note G in sharp',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 B.addEventListener('click', function() {   
-    filename = './assets/sounds/B.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note B',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 F.addEventListener('click', function() {   
-    filename = './assets/sounds/F.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note F',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 A.addEventListener('click', function() {   
-    filename = './assets/sounds/A.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note A',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 E.addEventListener('click', function() {   
-    filename = './assets/sounds/E.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note E',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 D.addEventListener('click', function() {   
-    filename = './assets/sounds/D.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note D',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 C.addEventListener('click', function() {   
-    filename = './assets/sounds/C.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note C',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
 G.addEventListener('click', function() {   
-    filename = './assets/sounds/G.wav'
-    const note = new Audio(filename);
-    note.play();
-
-    playedNote = createNote(this.id,'Note G',filename);
-
-    storeNote(playedNote);
-
-    createHTML();
+    executePianoClick(this.id);
 
 });
 
@@ -327,10 +278,9 @@ function playSong(songId) {
 
         song.forEach(note => {
             console.log("checking note:", note);
-            if (note.note && note.name && note.length !== undefined) {
-                let fileName = note.note.replace(/[-]/g, '');
-                const filePath = `./assets/sounds/${fileName}.wav`;
-                console.log("Attempting to play file:", filePath);
+            if (note.note && note.url && note.name && note.length !== undefined) {
+                const filePath = note.url;
+                console.log("Attempting to play file:", note.url);
 
                  const sound = new Audio(filePath);
 
@@ -349,7 +299,7 @@ function playSong(songId) {
                 createHTML(note);
             }, currentTime);
 
-            currentTime += note.length *1000;
+            currentTime += note.length;
         } else {
             console.error("INvalid note object:", note);
         }
