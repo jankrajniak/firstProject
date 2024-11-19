@@ -22,53 +22,55 @@
         <label for="theme">Select theme</label>
         <select id="theme" name="theme"><option value="color"> color</option></select>
     </div> -->
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Select Theme
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#" id="greenTheme">Green</a>
-          <a class="dropdown-item" href="#" id="redTheme">Red</a>
-          <a class="dropdown-item" href="#" id="blueTheme">Blue</a>
-          <a class="dropdown-item" href="#" id="normalTheme">Normal</a>
+    <main>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select Theme
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#" id="greenTheme">Green</a>
+            <a class="dropdown-item" href="#" id="redTheme">Red</a>
+            <a class="dropdown-item" href="#" id="blueTheme">Blue</a>
+            <a class="dropdown-item" href="#" id="normalTheme">Normal</a>
+            </div>
         </div>
-      </div>
+        <div id="piano-div">
+            <section id="piano">
+                <!-- keys -->
+                <button id="C" class="piano-key white">C</button>
+                <button id="C-sharp" class="piano-key black">C#</button>
+                <button id="D" class="piano-key white">D</button>
+                <button id="D-sharp" class="piano-key black">D#</button>
+                <button id="E" class="piano-key white">E</button>
+                <button id="F" class="piano-key white">F</button>
+                <button id="F-sharp" class="piano-key black">F#</button>
+                <button id="G" class="piano-key white">G</button>
+                <button id="G-sharp" class="piano-key black">G#</button>
+                <button id="A" class="piano-key white">A</button>
+                <button id="A-sharp" class="piano-key black">A#</button>
+                <button id="B" class="piano-key white">B</button>
 
-    <section id="piano">
-        <!-- keys -->
-        <button id="C" class="piano-key white">C</button>
-        <button id="C-sharp" class="piano-key black">C#</button>
-        <button id="D" class="piano-key white">D</button>
-        <button id="D-sharp" class="piano-key black">D#</button>
-        <button id="E" class="piano-key white">E</button>
-        <button id="F" class="piano-key white">F</button>
-        <button id="F-sharp" class="piano-key black">F#</button>
-        <button id="G" class="piano-key white">G</button>
-        <button id="G-sharp" class="piano-key black">G#</button>
-        <button id="A" class="piano-key white">A</button>
-        <button id="A-sharp" class="piano-key black">A#</button>
-        <button id="B" class="piano-key white">B</button>
-
-    </section>
-    <section id="key-press-display">
-        <h2>Keys Played</h2>
-        <div id="keys-Pressed"></div>
-    </section>
-
-    <section id="controls">
-        <div id="record-section">
-            <button id="record-button">Record Music</button>
-
+            </section>
         </div>
-        <div id="saved-music">
-            <h3>Saved Music</h3>
-            <select id="saved" name="saved"> <option value="tune"> tune</option></select>
-            <div id="song-list"></div>
-  
-        </div>
+        <section id="key-press-display">
+            <h2>Keys Played</h2>
+            <div id="keys-Pressed"></div>
+        </section>
 
-    </section>
+        <section id="controls">
+            <div id="record-section">
+                <button id="record-button">Record Music</button>
 
+            </div>
+            <div id="saved-music">
+                <h3>Saved Music</h3>
+                <select id="saved" name="saved"> <option value="tune"> tune</option></select>
+                <div id="song-list"></div>
+    
+            </div>
+
+        </section>
+    </main>
     <footer style="text-align:justify; ">
         <p>&copy 2024 PianoPulse - The Piano-Men</p>
     </footer>
