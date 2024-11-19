@@ -25,14 +25,22 @@ header {
     text-align: center;
 }
 
+
 #theme-selector, #controls, #key-press-display {
     text-align: center;
     margin-bottom: 20px;
 }
 
+#piano-div {
+    display: flex;
+    justify-content: center;
+}
+
 #piano {
     display: flex;
     justify-content: center;
+    max-width: 400px;
+    min-width: 400px;
     position: relative;
     gap: 0;
 }
@@ -112,22 +120,22 @@ header {
 }
 
 #C-sharp { 
-    left: calc((100% / 7) * 3.29 - ((100% / 7 * 0.6) / 2));
+    left: calc((100% / 7) * 1.35 - ((100% / 7 * 0.6) / 2));
  }
   #D-sharp { 
-    left: calc((100% / 7) * 3.47 - ((100% / 7 * 0.6) / 2));
+    left: calc((100% / 7) * 2.2 - ((100% / 7 * 0.6) / 2));
  }
   #F-sharp { 
-    left: calc((100% / 7) * 3.83 - ((100% / 7 * 0.6) / 2));
+    left: calc((100% / 7) * 4 - ((100% / 7 * 0.6) / 2));
 }
   #G-sharp { 
-    left: calc((100% / 7) * 4.01 - ((100% / 7 * 0.6) / 2));
+    left: calc((100% / 7) * 4.9 - ((100% / 7 * 0.6) / 2));
  }
   #A-sharp { 
-    left: calc((100% / 7) * 4.196 - ((100% / 7 * 0.6) / 2));
+    left: calc((100% / 7) * 5.75 - ((100% / 7 * 0.6) / 2));
  }
 
-#piano, #key-press-display, #controls {
+#piano, #key-press-display, #controls, #piano-div {
     padding: 20px;
     border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background for sections */
