@@ -269,3 +269,8 @@ footer {
     transition: all 0.3s ease;
     font-family: "Dancing Script", cursive;
 }
+#instructions:hover {
+    background-color: gold;
+    color: black; 
+    border: 2px solid black; 
+}

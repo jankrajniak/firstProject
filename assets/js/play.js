@@ -271,46 +271,44 @@ function playSong(songId) {
 
     const song = JSON.parse(localStorage.getItem(songId));
 
-    console.log("Retrieved Song from localStorage:", song);
-
-
+// Checking to see if there are songs and if they are in an array
     if(song && Array.isArray(song)) {
         removeHTML();
         let currentTime = 0;
-
+// Going over every note in the array
         song.forEach(note => {
-            console.log("checking note:", note);
+// Making sure only valid notes are being played
             if (note.note && note.url && note.name && note.length !== undefined) {
                 const filePath = note.url;
-                console.log("Attempting to play file:", note.url);
-
+// Controlling the audios playback
                  const sound = new Audio(filePath);
-
-
+// Checking for any errors if the audio file cannot be played
      sound.addEventListener('error', () => {
          console.error("Audio file not found or format not supported:", filePath);
 });
-        
+        // Creates a delay between each note
             setTimeout(() => {
+                // Starts the playback of the audio file 
                 sound.play().then(() => {
                     console.log(`${note.note} is playing`);
                  }).catch(err => {
                     console.error("Audio playback error:", err);
                 });
-                
+                // Displays the notes on screen dynamically
                 createHTML(note);
+                // Allowing the note to play after the certain amount of time
             }, currentTime);
-
+            // Updating the currentTime, to specify when the next note will play
             currentTime += note.length;
         } else {
-            console.error("INvalid note object:", note);
+            console.error("Invalid note object:", note);
         }
         });
     } else {
         console. error("Invalid song data:", song);
     }
 }
-
+// Adding an event listening to the dropdown, listening for a change in song selection
 selectSong.addEventListener('change', function () {
     const selectedSongId = this.value;
     console.log("Selected songId:", selectedSongId);
@@ -326,10 +324,10 @@ selectSong.addEventListener('change', function () {
    defaultOption.disabled = true;
    defaultOption.selected = true;
    selectSong.appendChild(defaultOption);
-   
+//    Looping through all of the songs in local storage
    for (let i = 0; i <localStorage.length; i++) {
     const key = localStorage.key(i);
-
+// Making sure only saved songs are selected, then appends them to the dropdown
     if (key !== 'tempStorage' && key !== 'songs') {
         const option = document.createElement('option');
         option.value = key;
