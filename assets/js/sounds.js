@@ -1,9 +1,5 @@
 //Building basic resources and checking to see if the sounds will play
 
-// alert('LEARN HOW TO PLAY PIANO');
-// alert('CLICK ON EACH KEY TO HEAR THE NOTE');
-// alert('RECORD YOUR MUSIC AND PLAY IT BACK LATER');
-
 const Dsharp = document.querySelector('#D-sharp');
 const Fsharp = document.querySelector('#F-sharp');
 const Asharp = document.querySelector('#A-sharp');
